@@ -1,12 +1,24 @@
+# IDE
+.idea/
+out/
+*.iml
+.classpath
+.project
+
+# Build tools & output
 classes
 *.jar
 *.zip
+javadoc
+.gradle/
+build/
+
+# Miscellaneous
 .settings
 .svn
 .hg
 .hgignore
 *.*~
-javadoc
 *.orig
 version.properties
 htdocs/jnlp/polycasso.jnlp
