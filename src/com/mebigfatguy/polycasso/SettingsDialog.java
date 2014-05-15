@@ -21,8 +21,6 @@ package com.mebigfatguy.polycasso;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -295,26 +293,18 @@ public class SettingsDialog extends JDialog {
     private void initListeners() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        useAnnealingButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        useAnnealingButton.addActionListener(ae -> {
                 boolean enable = useAnnealingButton.isSelected();
                 startTemperatureField.setEnabled(enable);
                 coolingRateField.setEnabled(enable);
-            }
-        });
+            });
 
-        resetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        resetButton.addActionListener(ae -> {
                 dlgSettings = new Settings();
                 populateValues();
-            }
-        });
+            });
 
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        okButton.addActionListener(ae -> {
                 dlgSettings.setGenerationSize(Integer.parseInt(generationSizeField.getText()));
                 dlgSettings.setEliteSize(Integer.parseInt(eliteSizeField.getText()));
                 dlgSettings.setUseAnnealing(useAnnealingButton.isSelected());
@@ -329,16 +319,12 @@ public class SettingsDialog extends JDialog {
                     isOK = true;
                     dispose();
                 }
-            }
-        });
+            });
 
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        cancelButton.addActionListener(ae -> {
                 isOK = false;
                 dispose();
-            }
-        });
+            });
     }
 
     /**

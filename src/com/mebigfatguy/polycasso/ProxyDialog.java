@@ -20,8 +20,6 @@ package com.mebigfatguy.polycasso;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -152,9 +150,7 @@ public class ProxyDialog extends JDialog {
     private void initListeners() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        okButton.addActionListener(ae -> {
                 String host = proxyHostField.getText().trim();
                 dlgSettings.setProxyHost(host.length() == 0 ? null : host);
                 String port = proxyPortField.getText().trim();
@@ -163,16 +159,12 @@ public class ProxyDialog extends JDialog {
                     isOK = true;
                     dispose();
                 }
-            }
-        });
+            });
 
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        cancelButton.addActionListener(ae -> {
                 isOK = false;
                 dispose();
-            }
-        });
+            });
     }
 
     /**

@@ -64,9 +64,9 @@ public class Improver {
      */
     public List<PolygonData> getData() {
         if (polygons == null) {
-            return new ArrayList<PolygonData>();
+            return new ArrayList<>();
         }
-        return Collections.<PolygonData>unmodifiableList(polygons);
+        return Collections.unmodifiableList(polygons);
     }
 
     /**
@@ -88,9 +88,9 @@ public class Improver {
     public ImprovementType improveRandomly() {
         changedMember = generationHandler.getRandomMember(false);
         if (changedMember != null) {
-            polygons = new ArrayList<PolygonData>(Arrays.<PolygonData>asList(changedMember.getData().clone()));
+            polygons = new ArrayList<>(Arrays.asList(changedMember.getData().clone()));
         } else {
-            polygons = new ArrayList<PolygonData>();
+            polygons = new ArrayList<>();
         }
 
         ImprovementType type = (polygons.isEmpty()) ? ImprovementType.AddPolygon : stats.getRandomImprovementType();

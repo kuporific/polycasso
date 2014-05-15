@@ -37,7 +37,7 @@ import java.util.Set;
  * This class generates multiple images in parallel to keep multicore processors busy.
  */
 public class DefaultImageGenerator implements ImageGenerator, Runnable {
-    private final Set<ImageGeneratedListener> listeners = new HashSet<ImageGeneratedListener>();
+    private final Set<ImageGeneratedListener> listeners = new HashSet<>();
     private final Settings settings;
     private final BufferedImage targetImage;
     private GenerationHandler generationHandler;
@@ -256,7 +256,7 @@ public class DefaultImageGenerator implements ImageGenerator, Runnable {
         Composite srcOpaque = AlphaComposite.getInstance(AlphaComposite.SRC, 1.0f);
         for (int i = 0; i < settings.getEliteSize(); i++) {
             BufferedImage image = new BufferedImage(imageSize.width, imageSize.height, BufferedImage.TYPE_4BYTE_ABGR);
-            List<PolygonData> polygons = new ArrayList<PolygonData>();
+            List<PolygonData> polygons = new ArrayList<>();
             PolygonData pd = PolygonData.randomPoly(imageSize, settings.getMaxPoints());
             polygons.add(pd);
             Graphics2D g2d = (Graphics2D)image.getGraphics();

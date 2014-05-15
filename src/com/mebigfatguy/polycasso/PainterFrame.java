@@ -22,8 +22,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedInputStream;
@@ -147,21 +145,16 @@ public class PainterFrame extends JFrame implements ImageGeneratedListener {
             }
         });
 
-        paintImage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        paintImage.addActionListener(ae -> {
                 try {
                     Image targetImage = RandomImageFinder.findImage(settings);
                     beginGenerating(targetImage);
                 } catch (IOException ioe) {
                     JOptionPane.showMessageDialog(PainterFrame.this, ioe.getMessage());
                 }
-            }
-        });
+            });
 
-        copyImage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        copyImage.addActionListener(ae -> {
                 try {
                     String url = JOptionPane.showInputDialog(PainterFrame.this, PolycassoBundle.getString(PolycassoBundle.Key.EnterURL));
                     if (url != null) {
@@ -171,56 +164,32 @@ public class PainterFrame extends JFrame implements ImageGeneratedListener {
                 } catch (IOException ioe) {
                     JOptionPane.showMessageDialog(PainterFrame.this, ioe.getMessage());
                 }
-            }
-        });
+            });
 
-        completeImage.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        completeImage.addActionListener(ae -> {
                 if (generator != null) {
                     generator.complete();
                 }
 
                 completeImage.setEnabled(false);
-            }
-        });
+            });
 
-        saveAsPNGItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                saveImage(FileType.PNG);
-            }
-        });
+        saveAsPNGItem.addActionListener(ae -> saveImage(FileType.PNG));
 
-        saveAsSVGItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                saveImage(FileType.SVG);
-            }
-        });
+        saveAsSVGItem.addActionListener(ae -> saveImage(FileType.SVG));
 
-        saveAsJavaItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                saveImage(FileType.Java);
-            }
-        });
+        saveAsJavaItem.addActionListener(ae -> saveImage(FileType.Java));
 
-        quitItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        quitItem.addActionListener(ae -> {
                 if (generator != null) {
                     generator.stopGenerating();
                 }
                 dispose();
                 saveSettings(settings);
                 System.exit(0);
-            }
-        });
+            });
 
-        settingsItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        settingsItem.addActionListener(ae -> {
                 SettingsDialog dialog = new SettingsDialog(settings);
                 dialog.setLocationRelativeTo(PainterFrame.this);
                 dialog.setModal(true);
@@ -237,12 +206,9 @@ public class PainterFrame extends JFrame implements ImageGeneratedListener {
                     settings.setMaxPoints(dlgSettings.getMaxPoints());
                     settings.setMaxPtMovement(dlgSettings.getMaxPtMovement());
                 }
-            }
-        });
+            });
 
-        proxyItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        proxyItem.addActionListener(ae -> {
                 ProxyDialog dialog = new ProxyDialog(settings);
                 dialog.setLocationRelativeTo(PainterFrame.this);
                 dialog.setModal(true);
@@ -252,18 +218,14 @@ public class PainterFrame extends JFrame implements ImageGeneratedListener {
                     settings.setProxyHost(dlgSettings.getProxyHost());
                     settings.setProxyPort(dlgSettings.getProxyPort());
                 }
-            }
-        });
+            });
 
-        aboutItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        aboutItem.addActionListener(ae -> {
                 AboutDialog ad = new AboutDialog();
                 ad.setLocationRelativeTo(PainterFrame.this);
                 ad.setModal(true);
                 ad.setVisible(true);
-            }
-        });
+            });
     }
 
     /**

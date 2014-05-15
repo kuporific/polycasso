@@ -86,7 +86,7 @@ public class RandomImageFinder {
 
         String html = new String(URLFetcher.fetchURLData(url, settings.getProxyHost(), settings.getProxyPort()), "UTF-8");
 
-        List<String> images = new ArrayList<String>();
+        List<String> images = new ArrayList<>();
 
         Matcher m = IMAGE_HTML_PATTERN.matcher(html);
         while (m.find()) {

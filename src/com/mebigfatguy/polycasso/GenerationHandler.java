@@ -54,7 +54,7 @@ public class GenerationHandler implements Serializable {
         settings = confSettings;
         bestMember = new GenerationMember(DefaultScore.MAX_SCORE, new PolygonData[0]);
         eliteCutOff = Long.MAX_VALUE;
-        generation = new ArrayList<GenerationMember>(settings.getGenerationSize() + 10);
+        generation = new ArrayList<>(settings.getGenerationSize() + 10);
         annealingValue = settings.getStartTemperature() * settings.getStartTemperature() * imageSize.height * imageSize.width;
         generationBests = 0;
         generationElites = 0;
@@ -127,10 +127,10 @@ public class GenerationHandler implements Serializable {
     private void processGeneration() {
         int eliteSize = settings.getEliteSize();
 
-        Collections.<GenerationMember>sort(generation);
+        Collections.sort(generation);
         int sz = generation.size();
 
-        List<GenerationMember> nextGeneration = new ArrayList<GenerationMember>(settings.getGenerationSize() + 10);
+        List<GenerationMember> nextGeneration = new ArrayList<>(settings.getGenerationSize() + 10);
         for (int i = 0; i < eliteSize; i++) {
             nextGeneration.add(generation.get(i));
         }

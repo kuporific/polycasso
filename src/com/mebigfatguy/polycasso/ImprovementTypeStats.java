@@ -41,7 +41,7 @@ public class ImprovementTypeStats {
 		}
 	}
 	
-	private Map<ImprovementType, Stats> typeStats = new EnumMap<ImprovementType, Stats>(ImprovementType.class);
+	private Map<ImprovementType, Stats> typeStats = new EnumMap<>(ImprovementType.class);
 	private Random r = new Random();
 	private int failureRun;
 	
