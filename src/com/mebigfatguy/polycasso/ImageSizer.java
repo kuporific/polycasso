@@ -26,7 +26,7 @@ import java.awt.image.ImageObserver;
  */
 public class ImageSizer implements ImageObserver {
 
-	private Object lock = new Object();
+	private final Object lock = new Object();
 	private int imageWidth = -1;
 	private int imageHeight = -1;
 	

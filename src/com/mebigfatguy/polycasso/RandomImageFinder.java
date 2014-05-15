@@ -82,7 +82,7 @@ public class RandomImageFinder {
      * @return the image
      * @throws IOException if the site that is hosting the image is down, or non responsive
      */
-    private static final Image findImageAt(String url, Settings settings) throws IOException {
+    private static Image findImageAt(String url, Settings settings) throws IOException {
 
         String html = new String(URLFetcher.fetchURLData(url, settings.getProxyHost(), settings.getProxyPort()), "UTF-8");
 

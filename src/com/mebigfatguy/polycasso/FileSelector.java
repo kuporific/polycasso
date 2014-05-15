@@ -76,12 +76,9 @@ public class FileSelector {
 		 */
 		@Override
 		public boolean accept(File file) {
-			if (file.isDirectory()) {
-				return true;
-			}
-			
-			return (file.getPath().endsWith(fileType.getExtension()));
-		}
+            return file.isDirectory() ||
+                    (file.getPath().endsWith(fileType.getExtension()));
+        }
 
 		/**
 		 * returns a string to be shown in the dialog for the file type desired

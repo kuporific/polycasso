@@ -32,7 +32,7 @@ public class GenerationHandler implements Serializable {
 
     private static final long serialVersionUID = 2375492293685052783L;
 
-    private List<GenerationMember> generation;
+    private final List<GenerationMember> generation;
     private final Random random;
     private final Settings settings;
     private int generationNumber;
@@ -157,7 +157,8 @@ public class GenerationHandler implements Serializable {
             }
         }
 
-        generation = nextGeneration;
+        generation.clear();
+        generation.addAll(nextGeneration);
 
         eliteCutOff = generation.get(eliteSize-1).getScore().getDelta();
 

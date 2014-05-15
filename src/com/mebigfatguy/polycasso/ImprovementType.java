@@ -93,6 +93,6 @@ public enum ImprovementType {
 	/**
 	 * completely change all attributes of a random existing polygon
 	 */
-	CompleteChange;
+	CompleteChange
 
 }

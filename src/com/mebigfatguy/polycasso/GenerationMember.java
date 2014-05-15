@@ -72,10 +72,8 @@ public class GenerationMember implements Comparable<GenerationMember>, Serializa
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof GenerationMember) {
-            return score.getDelta() == ((GenerationMember)o).score.getDelta();
-        }
-        return false;
+        return o instanceof GenerationMember
+                && score.getDelta() == ((GenerationMember) o).score.getDelta();
     }
 
     @Override

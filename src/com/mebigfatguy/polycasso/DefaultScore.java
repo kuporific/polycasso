@@ -60,11 +60,8 @@ public class DefaultScore implements Score {
      */
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof DefaultScore)) {
-            return false;
-        }
-
-        return getDelta() == ((DefaultScore) o).getDelta();
+        return o instanceof DefaultScore
+                && getDelta() == ((DefaultScore) o).getDelta();
     }
 
     /**

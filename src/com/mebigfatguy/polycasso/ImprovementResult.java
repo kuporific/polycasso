@@ -33,5 +33,5 @@ public enum ImprovementResult {
 	/**
 	 * this improvement didn't improve any on the elite set from last generation
 	 */
-	FAIL;
+	FAIL
 }
