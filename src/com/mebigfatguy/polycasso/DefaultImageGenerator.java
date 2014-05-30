@@ -206,15 +206,21 @@ public class DefaultImageGenerator implements ImageGenerator, Runnable {
                 while (!Thread.interrupted()) {
                     ImprovementType type = improver.improveRandomly();
 
-                    List<PolygonData> data = improver.getData();
-                    imagePolygonData(g2d, data, srcOpaque);
+                    imagePolygonData(g2d, improver.getData(), srcOpaque);
 
                     GenerationMember parentMember = improver.getParentGenerationMember();
-                    Score delta = feedback.calculateScore(image, (parentMember != null) ? parentMember.getScore() : null, improver.getChangedArea());
 
                     boolean wasSuccessful;
 
-                    ImprovementResult result = generationHandler.addPolygonData(delta, data.toArray(new PolygonData[data.size()]));
+                    ImprovementResult result = generationHandler.addPolygonData(
+                            feedback.calculateScore(
+                                    image,
+                                    (parentMember != null)
+                                            ? parentMember.getScore()
+                                            : null,
+                                    improver.getChangedArea()),
+                            improver.getData().toArray(new PolygonData[improver.getData().size()]));
+
                     switch (result) {
                         case BEST:
                             fireImageGenerated(image);

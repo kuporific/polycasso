@@ -25,6 +25,7 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * a class for holding the information for one polygon, including points, color
@@ -100,19 +101,22 @@ public class PolygonData implements Cloneable {
      * @return a random polygon
      */
     public static PolygonData randomPoly(Dimension size, int maxPoints) {
-        Random r = new Random();
+        Random r = ThreadLocalRandom.current();
         Polygon polygon = new Polygon();
         Rectangle polyRect = getPolyBounds(r, size);
 
         int numPoints = r.nextInt(maxPoints - 3) + 3;
         for (int i = 0; i < numPoints; i++) {
-            polygon.addPoint(polyRect.x + r.nextInt(polyRect.width), polyRect.y + r.nextInt(polyRect.height));
+            polygon.addPoint(
+                    polyRect.x + r.nextInt(polyRect.width),
+                    polyRect.y + r.nextInt(polyRect.height));
         }
         polygon.invalidate();
 
-        Color c = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
-
-        return new PolygonData(c, r.nextFloat(), polygon);
+        return new PolygonData(
+                new Color(r.nextFloat(), r.nextFloat(), r.nextFloat()),
+                r.nextFloat(),
+                polygon);
     }
 
     /**

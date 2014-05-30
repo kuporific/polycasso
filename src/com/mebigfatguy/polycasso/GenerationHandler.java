@@ -107,9 +107,7 @@ public class GenerationHandler implements Serializable {
 
             int r = random.nextInt(size);
 
-            int idx = (int)(r * ((double) r / (double) size));
-
-            return generation.get(idx);
+            return generation.get((int)(r * ((double) r / (double) size)));
         }
     }
 
